@@ -1,10 +1,13 @@
 const timeEl = document.getElementById('time');
+const tempEl = document.getElementById('temp');
+const iconEl = document.getElementById('icon');
 const dateEl = document.getElementById('date');
 const currentWeatherItemsEl = document.getElementById('current-weather-items');
 const timezone = document.getElementById('time-zone');
 const countryEl = document.getElementById('country');
 const weatherForecastEl = document.getElementById('weather-forecast');
 const currentTempEl = document.getElementById('current-temp');
+const currentWeatherIconsEl = document.getElementById('current-weather-icons');
 
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -44,13 +47,16 @@ function getWeatherData () {
 }
 
 function showWeatherData (data){
-    let {humidity, pressure} = data.main;
+    let {humidity, pressure, feels_like} = data.main;
     let {sunrise, sunset, country} = data.sys;
     let {speed} = data.wind;
+    
     
 
     timezone.innerHTML = data.name;
     countryEl.innerHTML = country;
+    tempEl.innerHTML = feels_like;
+    // iconEl.innerHTML = <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon"></img>
 
     currentWeatherItemsEl.innerHTML = 
     `<div class="weather-item">

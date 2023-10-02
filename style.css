@@ -58,6 +58,17 @@ body{
     font-weight: 100;
 }
 
+.place-container .icons{
+    font-size: 30px;
+    font-weight: 100;
+    display: inline-block;
+}
+.place-container .temp{
+    font-size: 30px;
+    font-weight: 100;
+    display: inline-block;
+}
+
 .place-container .country{
     font-size: 12px;
     font-weight: 700;
@@ -106,7 +117,7 @@ body{
 
 .future-forecast .today .day{
     padding: 5px 15px;
-    background: #3c3c44;
+    background: #1717b9;
     border-radius: 50px;
     text-align: center;
 }
