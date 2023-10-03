@@ -39,7 +39,7 @@ function getWeatherData () {
         
         let {latitude, longitude } = success.coords;
         console.log(success);
-        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=aa1f6ac8ed6414605c986f99045cb6df
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=aa1f6ac8ed6414605c986f99045cb6df
         `).then(res => res.json()).then(data => {
 
         console.log(data)
