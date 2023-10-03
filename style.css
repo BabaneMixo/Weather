@@ -136,12 +136,12 @@ body {
     }
 
     .place-container .icons .temp {
-        bottom: 350px;
+        bottom: 450px;
         right: 50px;
     }
 
     .place-container .icons .description {
-        bottom: 352px;
+        bottom: 450px;
         right: 25px;
         font-size: 15px;
     }
