@@ -8,6 +8,9 @@ const countryEl = document.getElementById('country');
 const weatherForecastEl = document.getElementById('weather-forecast');
 const currentTempEl = document.getElementById('current-temp');
 const currentWeatherIconsEl = document.getElementById('current-weather-icons');
+const desEl = document.getElementById('description');
+const imageEl = document.getElementsByClassName("icon");
+
 
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -36,11 +39,12 @@ function getWeatherData () {
         
         let {latitude, longitude } = success.coords;
         console.log(success);
-        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=aa1f6ac8ed6414605c986f99045cb6df
+        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=aa1f6ac8ed6414605c986f99045cb6df
         `).then(res => res.json()).then(data => {
 
         console.log(data)
         showWeatherData(data);
+        console.log(data.weather[0].main)
         })
 
     })
@@ -50,13 +54,13 @@ function showWeatherData (data){
     let {humidity, pressure, feels_like} = data.main;
     let {sunrise, sunset, country} = data.sys;
     let {speed} = data.wind;
-    
-    
-
+    let {main, icon} = data.weather[0];
+    desEl.innerHTML = main;
     timezone.innerHTML = data.name;
     countryEl.innerHTML = country;
-    tempEl.innerHTML = feels_like;
-    // iconEl.innerHTML = <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon"></img>
+    tempEl.innerHTML = Math.round(feels_like);
+    document.getElementById("icon").src = `http://openweathermap.org/img/wn//${icon}@2x.png`;
+    
 
     currentWeatherItemsEl.innerHTML = 
     `<div class="weather-item">
@@ -83,32 +87,4 @@ function showWeatherData (data){
     
     
     `;
-
-    // let otherDayForcast = ''
-    // data.daily.forEach((day, idx) => {
-    //     if(idx == 0){
-    //         currentTempEl.innerHTML = `
-    //         <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
-    //         <div class="other">
-    //             <div class="day">${window.moment(day.dt*1000).format('dddd')}</div>
-    //             <div class="temp">Night - ${day.temp.night}&#176;C</div>
-    //             <div class="temp">Day - ${day.temp.day}&#176;C</div>
-    //         </div>
-            
-    //         `
-    //     }else{
-    //         otherDayForcast += `
-    //         <div class="weather-forecast-item">
-    //             <div class="day">${window.moment(day.dt*1000).format('ddd')}</div>
-    //             <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-    //             <div class="temp">Night - ${day.temp.night}&#176;C</div>
-    //             <div class="temp">Day - ${day.temp.day}&#176;C</div>
-    //         </div>
-            
-    //         `
-    //     }
-    // })
-
-
-    // weatherForecastEl.innerHTML = otherDayForcast;
 }
